@@ -1,0 +1,330 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="../static/images/logoooo.png" type="image/x-icon">
+        <title>STOCKBURP</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+       
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+                
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}"  rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/templatemo-festava-live.css') }}" rel="stylesheet">
+        
+<!--
+
+TemplateMo 583 STOCKBURP
+
+https://templatemo.com/tm-583-festava-live
+
+-->
+
+    </head>
+    
+    <body  style="background-color: rgb(0, 0, 0);">
+
+        <main>
+
+            <header class="site-header">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-12 d-flex flex-wrap">
+                            <p class="d-flex me-4 mb-0">
+                                <i class="bi-person custom-icon me-2"></i>
+                                <strong class="text-dark">Welcome to NYSE Coca Cola </strong>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{{url_for('dashboard')}}">
+                        <img src="{{ url_for('static', filename='images/logoooo.png') }}">
+                        STOCKBURP
+                    </a>
+
+                    <a href="{{url_for('logout')}}" class="btn custom-btn d-lg-none ms-auto me-4">Log out</a>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a  style="color: white;" href="{{url_for('home')}}">Home</a>
+                            </li>
+    
+                            
+                        
+                        </ul>
+
+                        
+                    </div>
+                </div>
+            </nav>
+            
+            <section class="hero-section" id="section_1">
+            <div class="containernew" id="containernew">
+                <div class="form-containernew sign-up-new">
+                    <form method="POST" action="{{ url_for('register') }}">
+                        {{ form.hidden_tag() }}
+                        <h1 style="font-size: 40px;">Create Account</h1>
+                        <div class="social-icons-new">
+                            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <span>or use your email for registration</span>
+                        {{ form.username }}
+                        {{ form.password }}
+                        <p style="color: red;" id="username-feedback"></p>
+                        <button>Sign Up</button>
+                    </form>
+                </div>
+                <div class="form-containernew sign-in-new">
+                    <form method="POST" action="{{ url_for('login') }}">
+                        {{ form.hidden_tag() }}
+                        <h1 style="font-size: 40px;">Sign In</h1>
+                        <div class="social-icons-new">
+                            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <span>or use your email password</span>
+                        {{ form.username }}
+                        {{ form.password }}
+                        {% if login_successful == false %}
+                <p id="password-feedback" style="color: red;">Invalid username or password.</p>
+                {% endif %}
+                        <a href="#">Forget Your Password?</a>
+                        <button>Sign In</button>
+                    </form>
+                </div>
+                <div class="toggle-container-new">
+                    <div class="toggle-new">
+                        <div class="toggle-panel-new toggle-left-new">
+                            <h1 style="font-size: 40px;">Welcome Back!</h1>
+                            <p style="color: rgb(255, 255, 255);">Enter your personal details to use all site features</p>
+                            <button class="hidden" id="login">Sign In</button>
+                        </div>
+                        <div class="toggle-panel-new toggle-right-new">
+                            <h1 style="font-size: 40px;">Welcome</h1>
+                            <p style="color: rgb(255, 255, 255);">Register with your personal details to use all site features</p>
+                            <button class="hidden" id="register">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const usernameInput = document.getElementById('username');
+                    const passwordInput = document.getElementById('password');
+                    const feedbackMessage = document.getElementById('username-feedback');
+                    const registerButton = document.getElementById('register-btn');
+        
+                    usernameInput.addEventListener('input', function () {
+                        const username = usernameInput.value;
+        
+                        fetch(`/check_username/${username}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const usernameValid = username.length > 4;
+        
+                                if (data.exists) {
+                                    feedbackMessage.textContent = 'Username already exists.';
+                                    registerButton.disabled = true;
+                                } else {
+                                    if (!usernameValid) {
+                                        feedbackMessage.textContent = 'Username should be more than 4 characters.';
+                                        registerButton.disabled = true;
+                                    } else {
+                                        feedbackMessage.textContent = '';
+                                        registerButton.disabled = false;
+                                    }
+                                }
+                            })
+                            .catch(error => console.error('Error checking username:', error));
+                    });
+        
+                    passwordInput.addEventListener('input', function () {
+                        validateInputs();
+                    });
+        
+                    function validateInputs() {
+                        const username = usernameInput.value;
+                        const password = passwordInput.value;
+        
+                        const usernameValid = username.length > 4;
+                        const passwordValid = password.length > 8 && /\d/.test(password) && /[a-zA-Z]/.test(password);
+        
+                        if (!usernameValid) {
+                            feedbackMessage.textContent = 'Username should be more than 4 characters.';
+                        } else if (!passwordValid) {
+                            feedbackMessage.textContent = 'Password should be more than 8 characters and contain both characters and numbers.';
+                        } else {
+                            feedbackMessage.textContent = '';
+                        }
+        
+                        registerButton.disabled = !(usernameValid && passwordValid);
+                    }
+                });
+            </script>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <h2 class="text-white mb-lg-0">STOCKBURP</h2>
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-twitter"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-apple"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-pinterest"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12 mb-4 pb-2">
+                        <h5 class="site-footer-title mb-3">Links</h5>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Home</a>
+                            </li>
+
+                          
+                          
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Have a question?</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +216 22 786 808" class="site-footer-link">
+                                +216 22 786 808
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:stockburp@gmail.com" class="site-footer-link">
+                                stockburp@gmail.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                        <h5 class="site-footer-title mb-3">Location</h5>
+
+                        <p class="text-white d-flex mt-3 mb-2">
+                            54 Farhat Hached, Tunis</p>
+
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text">Copyright © 2036 STOCKBURP Company</p>
+                        </div>
+
+                        <div class="col-lg-8 col-12 mt-lg-5">
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Privacy Policy</a>
+                                </li>
+
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+<!--
+
+T e m p l a t e M o
+
+-->
+        <!-- JAVASCRIPT FILES -->
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/click-scroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+    </body>
+</html>
+
+

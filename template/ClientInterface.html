@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="icon" href="../static/images/logoooo.png" type="image/x-icon">
+        <title>STOCKBURP</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>STOCKBURP - Bootstrap 5 CSS Template</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+                
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}"  rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/templatemo-festava-live.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='/css/chat.css') }}" rel="stylesheet"> 
+        
+<!--"{{ url_for('static', filename='../static/css/bootstrap.min.css') }}" 
+
+TemplateMo 583 STOCKBURP
+
+https://templatemo.com/tm-583-festava-live
+
+-->
+    </head>
+    
+    <body>
+       
+        <main>
+
+            <header  class="site-header">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-12 d-flex flex-wrap">
+                            <p class="d-flex me-4 mb-0">
+                                <i class="bi-person custom-icon me-2"></i>
+                                <strong class="text-dark">Welcome to NYSE Coca Cola </strong>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{{url_for('dashboard')}}">
+                        <img src="{{ url_for('static', filename='images/logoooo.png') }}">
+                        STOCKBURP
+                    </a>
+
+                    <a href="{{url_for('logout')}}" class="btn custom-btn d-lg-none ms-auto me-4" style="white-space: nowrap;">Log out</a>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{{url_for('power_home')}}">Dashboard</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_3">News</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_4">Schedule</a>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" aria-expanded="false" onclick="toggleInsights()">Insights</a>
+                                
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{{url_for('Dividend_home')}}">Predict Dividend Payout</a></li>
+                                    <li><a class="dropdown-item" href="{{url_for('knn_home')}}">Predict Close Price</a></li>
+                                    <li><a class="dropdown-item" href="{{url_for('sentiment')}}">Predict Sentiment</a></li>
+
+                                </ul>
+                            </li>
+
+                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+                            <script>
+                                function toggleInsights() {
+                                    const dropdownMenu = document.querySelector('.dropdown-menu');
+                                    dropdownMenu.classList.toggle('show');
+                                }
+                            </script>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_6">Feedback</a>
+                            </li>
+                        </ul>
+
+                        <a href="{{url_for('logout')}}" class="btn custom-btn d-lg-block d-none" style="white-space: nowrap;">Log out</a>
+                    </div>
+                </div>
+            </nav>
+            
+
+            <section class="hero-section" id="section_1">
+                <div class="section-overlay"></div>
+
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div class="row">
+
+                        <div class="col-12 mt-auto mb-5 text-center">
+                            <small>STOCKBURP Presents</small>
+
+                            <h1 class="text-white mb-5">Coca Cola's Stock Exchange</h1>
+
+                            <a class="btn custom-btn smoothscroll" href="#section_2">Get started</a>
+                        </div>
+
+                        <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
+                            <div class="date-wrap">
+                                <h5 class="text-white" id="currentDateDisplay">
+                                    <i class="custom-icon bi-clock me-2"></i>
+                                </h5>
+                                
+                                <script>
+                                    // Get the current date
+                                    var currentDate = new Date();
+                                
+                                    // Format the date in the desired way
+                                    var options = { 
+                                        year: 'numeric', 
+                                        month: 'short', 
+                                        day: 'numeric' 
+                                    };
+                                    var formattedDate = currentDate.toLocaleDateString('en-US', options);
+                                
+                                    // Display the formatted date in the designated HTML element
+                                    document.getElementById('currentDateDisplay').innerHTML += formattedDate;
+                                </script>
+                            </div>
+
+                            <div class="location-wrap mx-auto py-3 py-lg-0">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-geo-alt me-2"></i>
+                                    New York, United States
+                                </h5>
+                            </div>
+
+                            <div class="social-share">
+                                <ul class="social-icon d-flex align-items-center justify-content-center">
+                                    <span class="text-white me-3">Share:</span>
+
+                                    <li class="social-icon-item">
+                                        <a href="https://www.facebook.com/profile.php?id=61554577125978" class="social-icon-link">
+                                            <span class="bi-facebook"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-twitter"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-instagram"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                        <source src="{{ url_for('static', filename='video/Coca-Cola _ 4K Commercial _ Product Video.mp4') }}" type="video/mp4">
+
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+
+            
+
+
+            <section class="artists-section section-padding" id="section_3">
+                <div class="container">
+                    <div class="row justify-content-center">
+
+                        <div class="col-12 text-center">
+                            <h2 class="mb-4">Press releases</h1>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="{{ url_for('static', filename='images/artists/13320561_10154068465966023_7532351159281886097_o.jpg') }}" class="artists-image img-fluid">
+                                </div>
+
+                                <div class="artists-hover">
+                                    <p>
+                                        <strong>NYSE Glitch Leads to Wild Swings in Share Prices</strong>
+                                        Prices eventually returned to normal levels, but the turmoil left some traders uncertain of whether their orders were placed.
+                                        <a href="https://www.nytimes.com/2023/01/24/business/nyse-trading-glitch.html" target="_blank"  style="font-weight: bold;">...Read More</a>
+                                    </p>
+
+                                    
+                                    <hr>
+
+                                </div>
+                            </div>
+                            <div class="artists-thumb">
+                                <img src="{{ url_for('static', filename='images/artists/13305261_10154068466396023_5538143855722993121_o.jpg') }}" class="artists-image img-fluid">
+
+
+                                <div class="artists-hover">
+                                   
+                                    <p>
+                                        <strong>NYSE Profit Declines on Lower Revenue</strong>                                
+                                        NYSE Profit Declines on Lower RevenueShare full article
+                                        <a href="https://www.nytimes.com/2011/08/03/business/nyse-profit-declines-on-lower-revenue.html?searchResultPosition=6" target="_blank" style="font-weight: bold;">...Read More</a>
+                                    </p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <div class="artists-thumb">
+                                <div class="artists-image-wrap">
+                                    <img src="{{ url_for('static', filename='images/artists/gettyimages-911841448-612x612.jpg') }}" class="artists-image img-fluid">
+                                </div>
+
+                                <div class="artists-hover">
+                                    <p>
+                                        <strong>N.Y.S.E. Names Former Regulator as Chief Regulatory Officer</strong>
+                                        The New York Stock Exchange has completed an overhaul of its regulatory functions, naming Anthony 
+                                        <a href="https://www.nytimes.com/2016/03/16/business/dealbook/nyse-names-former-regulator-as-chief-regulatory-officer.html?searchResultPosition=10" target="_blank" style="font-weight: bold;">...Read More</a>
+                                    </p>
+                                    <hr>
+
+                                    
+                                </div>
+                            </div>
+
+                            <div class="artists-thumb">
+                                <img src="{{ url_for('static', filename='images/artists/120919cocacola1562_800.jpg') }}" class="artists-image img-fluid">
+
+                                <div class="artists-hover">
+                                    
+                                    <p>
+                                        <strong>Decline in Trading Volume Hurts Profit at NYSE Euronext</strong>
+                                        NYSE Euronext, the operator of the New York Stock Exchange and other stock markets, said Tuesday that
+                                        <a href="https://www.nytimes.com/2012/11/07/business/nyse-euronext-reports-46-decline-in-profit.html?searchResultPosition=8" target="_blank" style="font-weight: bold;" >...Read More</a>
+                                    </p>
+                                    <hr>
+
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="schedule-section section-padding" id="section_4">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h2 class="text-white mb-4">Event Schedule</h1>
+
+                            <div class="table-responsive">
+                                <table class="schedule-table table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+
+                                            <th scope="col">Wednesday</th>
+
+                                            <th scope="col">Thursday</th>
+
+                                            <th scope="col">Friday</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Week 1</th>
+
+                                            <td class="table-background-image-wrap pop-background-image">
+                                                <h3>Annual Shareholder Meeting</h3>
+
+                                                <p class="mb-2">9:00 - 11:00 AM</p>
+
+                                                <p>By Mr.Hamilton</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+
+                                            <td style="background-color: #ffffff"></td>
+
+                                            <td class="table-background-image-wrap rock-background-image">
+                                                <h3>SEC Filings</h3>
+
+                                                <p class="mb-2">11:00 - 01:00 PM</p>
+
+                                                <p>By Mr.Leclerc</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Week 2</th>
+                
+                                            <td style="background-color: #ffffff"></td>
+
+                                            <td>
+                                                <h3>Key Product Launch</h3>
+
+                                                <p class="mb-2">8:30 - 9:30 AM</p>
+
+                                                <p>By Mr.Hamilton</p>
+                                            </td>
+
+                                            <td style="background-color: #c01f27"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Week 3</th>
+                
+                                            <td class="table-background-image-wrap country-background-image">
+                                                <h3>Quarterly ClientInterface Rebalancing</h3>
+
+                                                <p class="mb-2">9:30 - 11:30 AM</p>
+
+                                                <p>By Mr.Leclerc</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+
+                                            <td style="background-color: #c01f27"></td>
+
+                                            <td style="background-color: #ffffff"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Week 4</th>
+                
+                                            <td style="background-color: #ffffff"></td>
+
+                                            <td>
+                                                <h3>Dividend Declaration</h3>
+
+                                                <p class="mb-2">8:30 - 9:30 AM</p>
+
+                                                <p>By Mr.Hamilton</p>
+                                            </td>
+
+                                            <td style="background-color: #c01f27"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            
+
+
+            <section class="contact-section section-padding" id="section_6">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4">Speak your mind</h2>
+
+                            <nav class="d-flex justify-content-center">
+                                <div class="nav nav-tabs align-items-baseline justify-content-center" style="background-color: #E61D2B;" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactForm" type="button" role="tab" aria-controls="nav-ContactForm" aria-selected="false">
+                                        <h5>Contact Form</h5>
+                                    </button>
+
+                                    <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap" type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
+                                        <h5>Google Maps</h5>
+                                    </button>
+                                </div>
+                            </nav>
+
+                            <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel" aria-labelledby="nav-ContactForm-tab">
+                                    <form class="custom-form contact-form mb-5 mb-lg-0" action="https://formsubmit.co/stockburp@gmail.com" method="POST" role="form" >
+                                        <div class="contact-form-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="text" name="contact-name" id="contact-name" class="form-control" placeholder="Full name" required>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="email" name="contact-email" id="contact-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+                                                </div>
+                                            </div>
+
+                                            <input type="text" name="contact-company" id="contact-company" class="form-control" placeholder="Company" required>
+
+                                            <textarea name="contact-message" rows="3" class="form-control" id="contact-message" placeholder="Message"></textarea>
+                                            
+                                            <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                                <button type="submit" class="form-control">Send message</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                               
+                                <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel" aria-labelledby="nav-ContactMap-tab">
+                                    <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2686.534449831558!2d10.183385302160644!3d36.79824539236349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd346d11027bd5%3A0xb51311d65f737954!2s54%20Farhat%20Hached%2C%20Tunis!5e0!3m2!1sfr!2stn!4v1703362476949!5m2!1sfr!2stn" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            
+            <!--chatbot-->
+
+            <div class="chat-container">
+    <button id="toggleChatButton" class="toggle-chat-button">
+        <i class="bi bi-chat"></i>
+    </button>
+    <div class="chat-body" id="chatBody" style="display: none;">
+        <div class="greeting-message">
+            <i class="bi bi-chat"></i>
+        </div>
+
+        {% if prompt %}
+        <div class="user-message">
+            <p>{{ prompt }}</p>
+        </div>
+        {% endif %}
+
+        {% if response %}
+        <div class="bot-message">
+            <p>{{ response }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Updated discussion form -->
+        <form action="/generate_response" method="post" class="discussion-form">
+            <label for="prompt"></label>
+            <textarea placeholder="Enter a message..." spellcheck="false" id="prompt" name="prompt" required cols="5"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+            
+        <style>
+
+            /* Styles for the chat container */
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3000;
+}
+
+/* Styles for the toggle button */
+/* Styles for the toggle button */
+.toggle-chat-button {
+    cursor: pointer;
+    background-color: #E61D2B; /* Default red color */
+    color: #fff; /* Default font color */
+    padding: 10px 20px; /* Adjusted padding */
+    border: none;
+    border-radius: 50px; /* Making it oval */
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+    position: fixed;
+    bottom: 20px; /* Adjusted bottom position */
+    right: 20px; /* Adjusted right position */
+    z-index: 3000;
+}
+
+.toggle-chat-button:hover {
+    background-color: #fff; /* On hover, turns white */
+    color: #E61D2B; /* Font color turns red */
+}
+
+/* Styles for the chat body */
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 72px;
+    right: 20px;
+    width: 400px;
+    height: 500px;
+    background-color: #f5f5f5;
+    border-radius: 15px; /* Increased border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px; /* Adjusted padding */
+    font-family: 'Outfit', sans-serif;
+    
+}
+
+/* Styles for the chat form */
+.discussion-form {
+    margin: 0;
+    padding: 15px;
+    align-self: flex-end;
+}
+
+label {
+    display: none;
+}
+
+textarea {
+    flex: 1; /* Fill remaining space in the form */
+    padding: 10px;
+    margin-right: 10px; /* Space between textarea and button */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    clear: both;
+}
+
+button {
+    background-color: #E61D2B;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #E61D2B;
+    
+}
+
+/* Styles for user and bot messages */
+.user-message,
+.bot-message {
+    margin-top: 15px;
+    border-radius: 10px; /* Increased border-radius */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   /* max-width: 70%; *//* Adjusted max-width */
+   clear: both; /* Clear float to avoid overlap */
+    width: 70%; /* Limit message width */
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: #E61D2B; /* Brighter red for user messages */
+    color: #fff !important;
+    text-align: right;
+    float: right;
+    padding: 8px 12px; /* Adjusted padding */
+    margin: 8px; /* Added margin to create space between messages */
+    border-radius: 10px; /* Rounded corners */
+    max-width: 70%; /* Limit message width */
+    word-wrap: break-word;
+}
+
+.bot-message {
+    background-color: #ffffff;
+    color: #000;
+    font-size: 14px;
+    padding: 8px 12px; /* Adjusted padding */
+    margin: 8px; /* Added margin */
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.greeting-message {
+    padding: 20px;
+    text-align: center;
+    background-color: #E61D2B;
+    color: #fff;
+    border-radius: 15px; /* Increased border-radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.greeting-message p {
+    margin: 0;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.chat-icon {
+    width: 30px;
+    height: 30px;
+}
+.discussion-form {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    clear: both; 
+}
+        </style>
+<script>
+    // Add event listener to toggle button
+    document.getElementById('toggleChatButton').addEventListener('click', function (event) {
+        event.stopPropagation(); // Prevent the click event from propagating further
+        var chatBody = document.getElementById('chatBody');
+        chatBody.style.display = (chatBody.style.display === 'none' || chatBody.style.display === '') ? 'block' : 'none';
+    });
+
+    // Add an event listener to the document to close the chat when clicking outside of it
+    document.addEventListener('click', function (event) {
+        var chatBody = document.getElementById('chatBody');
+        if (event.target !== chatBody && !chatBody.contains(event.target)) {
+            chatBody.style.display = 'none';
+        }
+    });
+</script>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <h2 class="text-white mb-lg-0">STOCKBURP</h2>
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-twitter"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-apple"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-pinterest"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12 mb-4 pb-2">
+                        <h5 class="site-footer-title mb-3">Links</h5>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Home</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="{{url_for('power_home')}}" class="site-footer-link">Dashboard</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#section_3" class="site-footer-link">News</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#section_4" class="site-footer-link">Schedule</a>
+                            </li>
+
+                          
+
+                            <li class="site-footer-link-item">
+                                <a href="#section_6" class="site-footer-link">Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Have a question?</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +216 22 786 808" class="site-footer-link">
+                                +216 22 786 808
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:stockburp@gmail.com" class="site-footer-link">
+                                stockburp@gmail.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                        <h5 class="site-footer-title mb-3">Location</h5>
+
+                        <p class="text-white d-flex mt-3 mb-2">
+                            54 Farhat Hached, Tunis</p>
+
+                        <a class="link-fx-1 color-contrast-higher mt-3" href="#section_6">
+                            <span>Our Maps</span>
+                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text">Copyright © 2036 STOCKBURP Company</p>
+                        </div>
+
+                        <div class="col-lg-8 col-12 mt-lg-5">
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Privacy Policy</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#section_6" class="site-footer-link">Your Feedback</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </footer>
+      
+
+<!--
+
+T e m p l a t e M o
+
+-->
+<!--quiz-->
+<style>
+    #quiz-circle {
+    /* Existing styles */
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    cursor: pointer;
+    width: 120px; /* Adjust the width */
+    height: 60px; /* Adjust the height */
+    background: var(--custom-btn-bg-color);
+    border: 2px solid transparent;
+    border-radius: 60px 30px; /* Use different horizontal and vertical radii */
+    color: var(--white-color);
+    font-size: var(--btn-font-size);
+    font-weight: var(--font-weight-bold);
+    line-height: normal;
+    transition: all 0.3s;
+    padding: 10px 20px;
+}
+    #quiz-exit {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #d9534f; /* Couleur rouge similaire à celle de Coca-Cola */
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+    }
+    #quiz-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+    #question {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    #options {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .option {
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        width: 150px;
+    }
+    #message {
+        margin-top: 20px;
+    }
+    #score {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    #quiz-circle:hover {
+    right: 50px; /* Adjust this value as needed */
+    transition: right 0.3s ease; /* Add a smooth transition */
+}
+
+</style>
+</head>
+<body>
+
+<div id="quiz-circle" onclick="startQuiz()">Quiz</div>
+
+<div id="quiz-container">
+<button id="quiz-exit" onclick="resetQuiz()">X</button>
+<div id="question"></div>
+<div id="options"></div>
+<div id="message"></div>
+<div id="score">Score: <span id="currentScore">0</span>/4</div>
+</div>
+
+<script>
+const quizData = [
+{ question: "What is Coca-Cola's stock market symbol?", "options": ["KO", "COLA", "CC", "COK"], "correct": "KO" },
+{ question: "What was Coca-Cola's revenue in the last quarter?", "options": ["10M", "5B", "12B", "8M"], "correct": "12B" },
+{ question: "In which year was Coca-Cola introduced in the stock market (IPO)?", "options": ["1986", "2000", "1971", "1919"], "correct": "1919" },
+{ question: "What is the average dividend yield of Coca-Cola over the last five years?", "options": ["2%", "3%", "4%", "5%"], "correct": "3%" },
+{ question: "What is the current market capitalization of Coca-Cola?", "options": ["100B", "150B", "200B", "250B"], "correct": "200B" },
+{ question: "What is the current price of Coca-Cola's stock?", "options": ["$50", "$60", "$70", "$80"], "correct": "$70" },
+{ question: "How many countries does Coca-Cola currently serve?", "options": ["100", "150", "200", "250"], "correct": "200" },
+{ question: "What is the percentage growth of Coca-Cola's sales compared to the previous year?", "options": ["2%", "5%", "8%", "10%"], "correct": "5%" },
+{ question: "What is the current price-to-earnings ratio of Coca-Cola?", "options": ["15", "20", "25", "30"], "correct": "25" },
+{ question: "In which year was Coca-Cola founded?", "options": ["1886", "1901", "1923", "1950"], "correct": "1886" },
+{ question: "Who is Coca-Cola's main competitor in the carbonated beverage market?", "options": ["PepsiCo", "Dr Pepper Snapple Group", "Nestlé", "Keurig Dr Pepper"], "correct": "PepsiCo" },
+{ question: "How many different brands does Coca-Cola have in its portfolio?", "options": ["50", "100", "200", "300"], "correct": "200" },
+{ question: "What is Coca-Cola's current tagline?", "options": ["Open Happiness", "Taste the Feeling", "Share a Coke", "Refreshing the World"], "correct": "Taste the Feeling" },
+{ question: "What is the current slogan of Coca-Cola?", "options": ["Enjoy", "Taste the Feeling", "Open Happiness", "The Real Thing"], "correct": "Taste the Feeling" },
+{ question: "How many liters of Coca-Cola beverages are consumed daily worldwide?", "options": ["1 million", "10 million", "100 million", "1 billion"], "correct": "1 billion" },
+{ question: "In which year did Coca-Cola introduce the first recyclable aluminum bottle?", "options": ["1980", "1990", "2000", "2010"], "correct": "1960" },
+{ question: "What is the original flavor of Coca-Cola?", "options": ["Cherry", "Vanilla", "Lime", "Classic"], "correct": "Classic" },
+{ question: "What was the opening price of Coca-Cola's stock at the last session?", "options": ["$50", "$60", "$70", "$80"], "correct": "$70" },
+{ question: "What is the current analyst trend for Coca-Cola stock? (Buy, Sell, Hold)", "options": ["Buy", "Sell", "Hold", "Neutral"], "correct": "Buy" },
+{ question: "What was the change in Coca-Cola's stock price during the last session?", "options": ["+$2", "-$1", "+$3", "-$2"], "correct": "+$3" },
+{ question: "What is the 50-Day Moving Average of Coca-Cola's stock?", "options": ["$65", "$68", "$72", "$75"], "correct": "$68" },
+{ question: "What is the expected Forward P/E Ratio for Coca-Cola's stock?", "options": ["15", "18", "22", "25"], "correct": "22" },
+{ question: "What is the date of the next dividend payment for Coca-Cola shareholders?", "options": ["January 1st", "February 15th", "April 30th", "June 10th"], "correct": "April 30th" },
+{ question: "How did Coca-Cola's stock perform compared to the S&P 500 index in the last year?", "options": ["Ahead", "Behind", "Equal", "N/A"], "correct": "Ahead" },
+{ question: "What is the current analyst recommendation for Coca-Cola's stock? (Buy, Sell, Hold)", "options": ["Buy", "Sell", "Hold", "Neutral"], "correct": "Hold" },
+{ question: "What was the change in Coca-Cola's stock price over the last year?", "options": ["+5%", "-2%", "+8%", "-5%"], "correct": "+8%" },
+{ question: "How many analysts currently follow Coca-Cola's stock according to Wall Street data?", "options": ["10", "15", "20", "25"], "correct": "20" },
+{ question: "What is the current volatility of Coca-Cola's stock?", "options": ["Low", "Moderate", "High", "Very high"], "correct": "Moderate" },
+{ question: "What is the average annual return of Coca-Cola's stock over the last five years?", "options": ["3%", "5%", "8%", "10%"], "correct": "5%" },
+{ question: "What is the current trend of Coca-Cola's stock? (Bullish, Bearish, Stable)", "options": ["Bullish", "Bearish", "Stable", "Undecided"], "correct": "Bullish" },
+{ question: "What was the total return of Coca-Cola's stock over the last year, including dividends?", "options": ["+10%", "+15%", "+20%", "+25%"], "correct": "+20%" },
+{ question: "What is Coca-Cola's annual dividend per share as a percentage?", "options": ["2%", "3%", "4%", "5%"], "correct": "3%" },
+{ question: "What was the latest significant announcement or event related to Coca-Cola that impacted its stock price?", "options": ["Launch of a new product", "Change in leadership", "Positive financial results", "Legal issues"], "correct": "Launch of a new product" },
+{ question: "What is the current support level of Coca-Cola's stock?", "options": ["$65", "$68", "$72", "$75"], "correct": "$68" },
+{ question: "What is the current resistance level of Coca-Cola's stock?", "options": ["$70", "$75", "$80", "$85"], "correct": "$80" },
+{ question: "What is the date of Coca-Cola's next quarterly financial report?", "options": ["February 1st", "March 15th", "April 30th", "June 10th"], "correct": "April 30th" },
+{ question: "What percentage of Coca-Cola's institutional ownership is there?", "options": ["20%", "30%", "40%", "50%"], "correct": "40%" },
+{ question: "What was the change in Coca-Cola's stock price over the last month?", "options": ["+3%", "-1%", "+5%", "-2%"], "correct": "+5%" },
+{ question: "What is the main current concern of investors regarding Coca-Cola?", "options": ["Increased competition", "Governance issues", "Sales decline", "Environmental impact"], "correct": "Increased competition" },
+{ question: "What was the total return of Coca-Cola's stock over the last three months, including dividends?", "options": ["+5%", "+8%", "+10%", "+12%"], "correct": "+10%" },
+{ question: "What is Coca-Cola's dividend policy? (Increasing, Stable, Decreasing)", "options": ["Increasing", "Stable", "Decreasing", "Variable"], "correct": "Stable" },
+{ question: "What is the current dividend yield of Coca-Cola's stock?", "options": ["2%", "3%", "4%", "5%"], "correct": "3%" },
+{ question: "What recent event had a significant impact on Coca-Cola's stock price?", "options": ["Launch of a new flavor", "Change in CEO", "Disappointing quarterly results", "Major acquisition"], "correct": "Change in CEO" },
+{ question: "What is the forecasted earnings per share (EPS) growth for Coca-Cola in the coming year?", "options": ["5%", "8%", "10%", "12%"], "correct": "8%" },
+{ question: "What is the average analyst recommendation for Coca-Cola's stock?", "options": ["Buy", "Sell", "Hold", "Neutral"], "correct": "Buy" },
+{ question: "What is the average target price set by analysts for Coca-Cola's stock?", "options": ["$75", "$80", "$85", "$90"], "correct": "$85" },
+{ question: "What percentage of Coca-Cola's revenue comes from international markets?", "options": ["20%", "30%", "40%", "50%"], "correct": "50%" },
+{ question: "What percentage of Coca-Cola's revenue comes from its major non-Coca-Cola brands?", "options": ["10%", "15%", "20%", "25%"], "correct": "20%" },
+{ question: "What is Coca-Cola's position relative to its direct competitors in the market?", "options": ["First", "Second", "Third", "Fourth"], "correct": "First" },
+{ question: "What is Coca-Cola's current market capitalization?", "options": ["$150B", "$175B", "$200B", "$225B"], "correct": "$200B" },
+{ question: "What is Coca-Cola's current debt-to-equity (D/E) ratio?", "options": ["0.5", "0.75", "1.0", "1.25"], "correct": "0.75" },
+{ 
+  question: "What is the average analyst recommendation for Coca-Cola's stock? (Buy, Sell, Hold)",
+  "options": ["Buy", "Sell", "Hold", "Neutral"],
+  "correct": "Buy"
+},
+{ 
+  question: "What is the average target price set by analysts for Coca-Cola's stock?",
+  "options": ["$75", "$80", "$85", "$90"],
+  "correct": "$85"
+},
+{ 
+  question: "What percentage of Coca-Cola's revenue comes from international markets?",
+  "options": ["20%", "30%", "40%", "50%"],
+  "correct": "50%"
+},
+{ 
+  question: "What percentage of Coca-Cola's revenue comes from its major non-Coca-Cola brands?",
+  "options": ["10%", "15%", "20%", "25%"],
+  "correct": "20%"
+},
+{ 
+  question: "Where does Coca-Cola stand among its direct market competitors?",
+  "options": ["First", "Second", "Third", "Fourth"],
+  "correct": "First"
+},
+{ 
+  question: "What is Coca-Cola's current market capitalization?",
+  "options": ["$150B", "$175B", "$200B", "$225B"],
+  "correct": "$200B"
+},
+{ 
+  question: "What is Coca-Cola's current debt-to-equity (D/E) ratio?",
+  "options": ["0.5", "0.75", "1.0", "1.25"],
+  "correct": "0.75"
+},
+{ 
+  question: "How did Coca-Cola's stock performance compare to its sector in the last year?",
+  "options": ["Outperforming", "Underperforming", "Equal", "N/A"],
+  "correct": "Outperforming"
+},
+{ 
+  question: "What is Coca-Cola's current net profit margin?",
+  "options": ["10%", "15%", "20%", "25%"],
+  "correct": "20%"
+},
+{ 
+  question: "What is the average annual revenue growth rate of Coca-Cola over the last five years?",
+  "options": ["2%", "4%", "6%", "8%"],
+  "correct": "6%"
+},
+{ 
+  question: "What percentage of Coca-Cola's shares is held by institutional investors?",
+  "options": ["30%", "40%", "50%", "60%"],
+  "correct": "50%"
+},
+{ 
+  question: "What is Coca-Cola's position in the S&P 500 stock index?",
+  "options": ["Included", "Excluded", "Upward", "Downward"],
+  "correct": "Included"
+},
+{ 
+  question: "What is the sectoral distribution of Coca-Cola's product portfolio?",
+  "options": ["Soft Drinks", "Bottled Water", "Juices", "Coffee"],
+  "correct": "Soft Drinks"
+},
+{ 
+  question: "What growth strategy does Coca-Cola prefer? (Internal growth, Acquisitions, Partnerships)",
+  "options": ["Internal growth", "Acquisitions", "Partnerships", "All of the above"],
+  "correct": "All of the above"
+},
+{ 
+  question: "What is Coca-Cola's share buyback policy?",
+  "options": ["Frequent", "Occasional", "None", "Depends on market conditions"],
+  "correct": "Occasional"
+}
+
+
+
+
+
+];
+
+const shuffledQuizData = quizData.sort(() => Math.random() - 0.5);
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startQuiz() {
+document.getElementById("quiz-circle").style.display = "none";
+document.getElementById("quiz-container").style.display = "block";
+loadQuestion();
+}
+
+function loadQuestion() {
+const currentQuestion = shuffledQuizData[currentQuestionIndex];
+
+document.getElementById("question").innerHTML = currentQuestion.question;
+
+const optionsContainer = document.getElementById("options");
+optionsContainer.innerHTML = "";
+currentQuestion.options.forEach((option) => {
+    const optionElement = document.createElement("div");
+    optionElement.className = "option";
+    optionElement.innerHTML = option;
+    optionElement.addEventListener("click", () => checkAnswer(option));
+    optionsContainer.appendChild(optionElement);
+});
+}
+
+function checkAnswer(userAnswer) {
+// Désactiver les options après qu'une réponse a été donnée
+document.querySelectorAll(".option").forEach((option) => {
+    option.removeEventListener("click", checkAnswer);
+});
+
+const correctAnswer = shuffledQuizData[currentQuestionIndex].correct;
+
+const messageElement = document.getElementById("message");
+messageElement.innerHTML = "";
+
+document.querySelectorAll(".option").forEach((option) => {
+    if (option.innerHTML === correctAnswer) {
+        option.style.backgroundColor = "green";
+        option.style.color = "white";
+    } else {
+        option.style.backgroundColor = "red";
+        option.style.color = "white";
+    }
+});
+
+if (userAnswer === correctAnswer) {
+    messageElement.innerHTML = "Excellent! Good answer.";
+    messageElement.style.color = "green";
+    score++;
+} else {
+    messageElement.innerHTML = `Wrong answer. The correct answer is: ${correctAnswer}`;
+    messageElement.style.color = "red";
+}
+
+document.getElementById("currentScore").innerText = score;
+
+setTimeout(() => {
+    document.querySelectorAll(".option").forEach((option) => {
+        option.style.backgroundColor = "";
+        option.style.color = "";
+    });
+    messageElement.innerHTML = "";
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < 4) {
+        loadQuestion();
+    } else {
+        alert(score >= 3 ? "Congratulations! You passed the quiz. You understand our dashboard!" : "Unfortunately! You should check out our dashboard to better understand.");
+        resetQuiz();
+    }
+}, 2000);
+}
+
+function resetQuiz() {
+currentQuestionIndex = 0;
+score = 0;
+document.getElementById("currentScore").innerText = score;
+document.getElementById("quiz-circle").style.display = "block";
+document.getElementById("quiz-container").style.display = "none";
+}
+
+
+</script>
+<!--timer-->
+<style>
+   
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay">
+    <div class="popup">
+        <p>Are you here?</p>
+        <button id="confirmButton" class="confirmButtonStyle">I am here!</button>
+    </div>
+</div>
+
+<style>
+   
+        /* Style for the overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Additional styling for the overlay content */
+        #overlay-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Overlay with a confirmation button -->
+<div id="overlay">
+    <div id="overlay-content">
+        <p>Are you still there?</p>
+        <button id="confirmButton">Yes</button>
+    </div>
+</div>
+
+<!-- Your other HTML content goes here -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const inactivityTimeout = 30000;  // 30 seconds in milliseconds
+        let timeout;
+
+        function showAlert() {
+            document.getElementById("overlay").style.display = "flex";
+            // Automatically trigger logout after 30 seconds
+            timeout = setTimeout(logout, inactivityTimeout);
+        }
+
+        function hideAlert() {
+            document.getElementById("overlay").style.display = "none";
+            // Cancel the automatic logout timer
+            clearTimeout(timeout);
+        }
+
+        function logout() {
+            // Redirect to /logout
+            window.location.href = '/';
+            alert("You have been logged out due to inactivity.");
+        }
+
+        function resetTimeout() {
+            clearTimeout(timeout);
+            timeout = setTimeout(showAlert, inactivityTimeout);
+        }
+
+        document.addEventListener("mousemove", resetTimeout);
+        document.addEventListener("keypress", resetTimeout);
+
+        document.getElementById("confirmButton").addEventListener("click", function () {
+            hideAlert();
+            resetTimeout();
+        });
+
+        resetTimeout();
+    });
+</script>
+        <!-- JAVASCRIPT FILES -->
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/click-scroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+    </body>
+</html>

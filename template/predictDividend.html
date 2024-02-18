@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="../static/images/logoooo.png" type="image/x-icon">
+        <title>STOCKBURP</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+                
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}"  rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+        <link href="{{ url_for('static', filename='css/templatemo-festava-live.css') }}" rel="stylesheet">
+        
+<!--
+
+TemplateMo 583 STOCKBURP
+
+https://templatemo.com/tm-583-festava-live
+
+-->
+
+    </head>
+    
+    <body  style="background-color: rgb(0, 0, 0);">
+
+        <main>
+
+            <header class="site-header">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-12 d-flex flex-wrap">
+                            <p class="d-flex me-4 mb-0">
+                                <i class="bi-person custom-icon me-2"></i>
+                                <strong class="text-dark">Welcome to NYSE Coca Cola </strong>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{{url_for('dashboard')}}">
+                        <img src="{{ url_for('static', filename='images/logoooo.png') }}">
+                        STOCKBURP
+                    </a>
+
+                    <a href="{{url_for('logout')}}" class="btn custom-btn d-lg-none ms-auto me-4">Log out</a>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{{url_for('client_home')}}">Home</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{{url_for('power_home')}}">Dashboard</a>
+                            </li>
+    
+                            >
+
+                            
+    
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" aria-expanded="false" onclick="toggleInsights()">Insights</a>
+                                
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <li><a class="dropdown-item" style="color: #E61D2B;" href="{{url_for('Dividend_home')}}">Predict Dividend Payout</a></li>
+                                    <li><a class="dropdown-item" href="{{url_for('close_home')}}">Predict Close Price</a></li>
+                                    <li><a class="dropdown-item" href="{{url_for('sentiment')}}">Predict Sentiment</a></li>
+                                </ul>
+                            </li>
+
+                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+                            <script>
+                                function toggleInsights() {
+                                    const dropdownMenu = document.querySelector('.dropdown-menu');
+                                    dropdownMenu.classList.toggle('show');
+                                }
+                            </script>
+
+
+
+                        
+                        </ul>
+
+                        <a href="{{url_for('logout')}}" class="btn custom-btn d-lg-block d-none">Log out</a>
+                    </div>
+                </div>
+            </nav>
+
+
+            <section class="contact-section section-padding" id="section_6">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4" style="color: white;">Dividend Payout Prediction</h2>
+
+                           
+
+                            <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel" aria-labelledby="nav-ContactForm-tab">
+                                    <form class="custom-form contact-form mb-5 mb-lg-0" action="/predict_lr" method="POST" role="form">
+                                        <div class="contact-form-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex justify-content-center">
+                                                        <input type="text" name="Stock_Price" id="Stock_Price"  class="form-control" placeholder="Stock Price" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--BDEL HETHI BI BLASIT IL AFFICHAGE MTA3 IL PREDICTION-->
+
+                                        
+                                            <div class="col-lg-4 col-md-10 col-8 mx-auto mt-3">
+                                                <button type="submit" class="form-control">Prediction Result</button>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                        {% if prediction_lr %}
+                                        <p>Prediction: {{ prediction_lr }}</p>
+                                    </div>
+                                </div>
+                                    {% endif %}
+                                
+                                
+                                    <!-- Display an error if it occurs -->
+                                    {% if error_lr %}
+                                        <p>Error: {{ error_lr }}</p>
+                                    {% endif %}
+                                    </form>
+                                </div>
+                                
+                               
+                                
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <h2 class="text-white mb-lg-0">STOCKBURP</h2>
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-twitter"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-apple"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-pinterest"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12 mb-4 pb-2">
+                        <h5 class="site-footer-title mb-3">Links</h5>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="{{url_for('client_home')}}" class="site-footer-link">Home</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="{{url_for('power_home')}}" class="site-footer-link">Dashboard</a>
+                            </li>
+
+    
+                          
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Have a question?</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: +216 22 786 808" class="site-footer-link">
+                                +216 22 786 808
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:stockburp@gmail.com" class="site-footer-link">
+                                stockburp@gmail.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                        <h5 class="site-footer-title mb-3">Location</h5>
+
+                        <p class="text-white d-flex mt-3 mb-2">
+                            54 Farhat Hached, Tunis</p>
+
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text">Copyright © 2036 STOCKBURP Company</p>
+                        </div>
+
+                        <div class="col-lg-8 col-12 mt-lg-5">
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Privacy Policy</a>
+                                </li>
+
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+<!--
+
+T e m p l a t e M o
+
+-->
+<style>
+   
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay">
+    <div class="popup">
+        <p>Are you here?</p>
+        <button id="confirmButton" class="confirmButtonStyle">I am here!</button>
+    </div>
+</div>
+
+<style>
+   
+        /* Style for the overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Additional styling for the overlay content */
+        #overlay-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Overlay with a confirmation button -->
+<div id="overlay">
+    <div id="overlay-content">
+        <p>Are you still there?</p>
+        <button id="confirmButton">Yes</button>
+    </div>
+</div>
+
+<!-- Your other HTML content goes here -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const inactivityTimeout = 30000;  // 30 seconds in milliseconds
+        let timeout;
+
+        function showAlert() {
+            document.getElementById("overlay").style.display = "flex";
+            // Automatically trigger logout after 30 seconds
+            timeout = setTimeout(logout, inactivityTimeout);
+        }
+
+        function hideAlert() {
+            document.getElementById("overlay").style.display = "none";
+            // Cancel the automatic logout timer
+            clearTimeout(timeout);
+        }
+
+        function logout() {
+            // Redirect to /logout
+            window.location.href = '/';
+            alert("You have been logged out due to inactivity.");
+        }
+
+        function resetTimeout() {
+            clearTimeout(timeout);
+            timeout = setTimeout(showAlert, inactivityTimeout);
+        }
+
+        document.addEventListener("mousemove", resetTimeout);
+        document.addEventListener("keypress", resetTimeout);
+
+        document.getElementById("confirmButton").addEventListener("click", function () {
+            hideAlert();
+            resetTimeout();
+        });
+
+        resetTimeout();
+    });
+</script>
+        <!-- JAVASCRIPT FILES -->
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/click-scroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+
+    </body>
+</html>
